@@ -10,7 +10,7 @@ class Animal:  # Parent
     description = "The class creates animals"
 
     def __init__(self, voice):
-        self.status = "then animal alive"
+        self.status = "the animal alive"
         self.voice = voice
 
     def make_voice(self):
@@ -29,7 +29,8 @@ class Dog(Animal):  # Child
     def protect(self):
         print("Yes, I can protect you!")
 
-class cat(Animal):  # Child
+
+class Cat(Animal):  # Child
     def __init__(self, name, sound, voice):
         self.name = name
         self.sound = sound
@@ -41,7 +42,11 @@ class cat(Animal):  # Child
     def play(self):
         pass
 
-class fish(Animal):  # Child
+    def make_voice(self):
+        print(f"the {self.name} says {self.voice}")
+
+
+class Fish(Animal):  # Child
     def __init__(self, name, sound, voice):
         self.name = name
         self.sound = sound
@@ -53,16 +58,17 @@ class fish(Animal):  # Child
     def swim(self):
         print("Yes, i can swim")
 
-# dog  = Dog("Rex", "wow", True)
-cat  = cat("Tom", "myeow", True)
-fish = fish("Nemo", "ZzZ", False)
 
+dog  = Dog("Rex", "wow", True)
+cat  = Cat("Tom", "myeow", True)
+fish = Fish("Nemo", "ZzZ", False)
 
+dog.introduce()
 cat.introduce()
 fish.introduce()
 print("----")
 
-# dog.make_voice()
+dog.make_voice()
 fish.make_voice()
 cat.make_voice()
 
@@ -72,3 +78,24 @@ print(Dog.description)
 print(fish.voice, cat.voice)
 print("cat.status:", cat.status)
 print("fish.status:", fish.status)
+
+
+print("===== POLIMORPHISM =====")
+
+dog.make_voice()
+fish.make_voice()
+print("----")
+
+# fish > Fish > Animal > object
+a = isinstance(fish, Fish)
+b = isinstance(fish, Animal)
+c = isinstance(fish, object)
+d = isinstance("MIT", object)
+
+result = a and b and c and d
+print(f"the result: {result}")
+
+# Fish > Animal > object
+data1 = issubclass(Fish, Animal)
+data2 = issubclass(Animal, object)
+print("data:", data1, data2)
